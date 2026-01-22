@@ -22,7 +22,7 @@ const NEZHA_PORT = process.env.NEZHA_PORT || '';
 const NEZHA_KEY = process.env.NEZHA_KEY || '';
 const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';
 const ARGO_AUTH = process.env.ARGO_AUTH || '';
-const ARGO_PORT = process.env.ARGO_PORT || 8002;
+const ARGO_PORT = process.env.ARGO_PORT || 8005;
 
 const OPT_IP = process.env.CFIP || 'cdns.doon.eu.org'; 
 const OPT_PORT = process.env.CFPORT || 443;            
